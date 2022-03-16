@@ -34,9 +34,16 @@
                     --blocklist-type "EFI_KEY_OPTION" \
                     --ctypes-prefix crate::ctypes \
             	      --rust-target nightly \
-                    -- -I lib/extra/edk2/MdePkg/Include/ -I lib/extra/edk2/MdePkg/Include/"$1"/ -I lib/extra/edk2/MdePkg/Include/Library/ \
+                    -- -I lib/extra/edk2/MdePkg/Include/ \
+                    -I lib/extra/edk2/MdePkg/Include/"$1"/ \
+                    -I lib/extra/edk2/MdePkg/Include/Library/ \
+                    -I lib/extra/edk2/MdeModulePkg/Include/ \
+                    -I lib/extra/edk2/NetworkPkg/ \
+                    -I lib/extra/edk2/NetworkPkg/Include/ \
+                    -I lib/extra/edk2/RedfishPkg/Include/ \
+                    -I lib/extra/edk2/RedfishPkg/ \
                     --target=x86_64-unknown-uefi \
-                    -nostdlib -fshort-wchar > lib/src/bindings_"$1".rs
+                    -nostdlib -fshort-wchar | sed 's/MEMORY_ERROR_CORRECT_CAPABILITY/crate\:\:MEMORY_ERROR_CORRECT_CAPABILITY/g' > lib/src/bindings_"$1".rs
             }
             bindgen --version
             generate "X64"

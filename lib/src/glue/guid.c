@@ -49,6 +49,27 @@ WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
 #include <Protocol/FormBrowser2.h>
 #include <Guid/MdeModuleHii.h>
 
+#include <Guid/ImageAuthentication.h>
+#include <Guid/SmBios.h>
+#include <Guid/TlsAuthentication.h>
+#include <Guid/HttpTlsCipherList.h>
+#include <Protocol/AdapterInformation.h>
+#include <Protocol/Dns4.h>
+#include <Protocol/Dns6.h>
+#include <Protocol/Dpc.h>
+#include <Protocol/HttpUtilities.h>
+#include <Protocol/Ip4Config2.h>
+#include <Protocol/Ip6Config.h>
+#include <Protocol/ManagedNetwork.h>
+#include <Protocol/RestEx.h>
+#include <Protocol/SimpleNetwork.h>
+#include <Protocol/Smbios.h>
+#include <Protocol/Tcp4.h>
+#include <Protocol/Tcp6.h>
+#include <Protocol/Tls.h>
+#include <Protocol/TlsConfig.h>
+#include <Protocol/HttpCallback.h>
+
 EFI_GUID gEfiPciIoProtocolGuid = EFI_PCI_IO_PROTOCOL_GUID;
 EFI_GUID gEfiDriverDiagnosticsProtocolGuid = EFI_DRIVER_DIAGNOSTICS_PROTOCOL_GUID;
 EFI_GUID gEfiDriverDiagnostics2ProtocolGuid = EFI_DRIVER_DIAGNOSTICS2_PROTOCOL_GUID;
@@ -102,8 +123,58 @@ EFI_GUID gEfiHiiConfigRoutingProtocolGuid = EFI_HII_CONFIG_ROUTING_PROTOCOL_GUID
 EFI_GUID gEfiFormBrowser2ProtocolGuid = EFI_FORM_BROWSER2_PROTOCOL_GUID;
 
 EFI_GUID gEdkiiIfrBitVarstoreGuid = EDKII_IFR_BIT_VARSTORE_GUID;
+EFI_GUID gEfiHttpServiceBindingProtocolGuid = EFI_HTTP_SERVICE_BINDING_PROTOCOL_GUID;
+EFI_GUID gEfiHttpProtocolGuid = EFI_HTTP_PROTOCOL_GUID;
+EFI_GUID gEfiRestExProtocolGuid = EFI_REST_EX_PROTOCOL_GUID;
+EFI_GUID gEfiRestExServiceBindingProtocolGuid = EFI_REST_EX_SERVICE_BINDING_PROTOCOL_GUID;
+EFI_GUID gEfiHttpUtilitiesProtocolGuid = EFI_HTTP_UTILITIES_PROTOCOL_GUID;
 
 EFI_GUID gEfiVirtualDiskGuid = EFI_VIRTUAL_DISK_GUID;
 EFI_GUID gEfiVirtualCdGuid = EFI_VIRTUAL_CD_GUID;
 EFI_GUID gEfiPersistentVirtualDiskGuid = EFI_PERSISTENT_VIRTUAL_DISK_GUID;
 EFI_GUID gEfiPersistentVirtualCdGuid = EFI_PERSISTENT_VIRTUAL_CD_GUID;
+
+EFI_GUID gEfiAdapterInformationProtocolGuid = EFI_ADAPTER_INFORMATION_PROTOCOL_GUID;
+EFI_GUID gEfiAdapterInfoMediaStateGuid = EFI_ADAPTER_INFO_MEDIA_STATE_GUID;
+EFI_GUID gEfiAdapterInfoNetworkBootGuid = EFI_ADAPTER_INFO_NETWORK_BOOT_GUID;
+EFI_GUID gEfiAdapterInfoSanMacAddressGuid = EFI_ADAPTER_INFO_SAN_MAC_ADDRESS_GUID;
+EFI_GUID gEfiAdapterInfoUndiIpv6SupportGuid = EFI_ADAPTER_INFO_UNDI_IPV6_SUPPORT_GUID;
+
+EFI_GUID gEfiDpcProtocolGuid = EFI_DPC_PROTOCOL_GUID;
+
+EFI_GUID gEfiManagedNetworkServiceBindingProtocolGuid = EFI_MANAGED_NETWORK_SERVICE_BINDING_PROTOCOL_GUID;
+EFI_GUID gEfiManagedNetworkProtocolGuid = EFI_MANAGED_NETWORK_PROTOCOL_GUID;
+
+EFI_GUID gEfiSimpleNetworkProtocolGuid = EFI_SIMPLE_NETWORK_PROTOCOL_GUID;
+
+EFI_GUID gEfiIp4Config2ProtocolGuid = EFI_IP4_CONFIG2_PROTOCOL_GUID;
+
+EFI_GUID gEfiSmbiosTableGuid = SMBIOS_TABLE_GUID;
+EFI_GUID gEfiSmbios3TableGuid = SMBIOS3_TABLE_GUID;
+
+EFI_GUID gEfiTcp4ServiceBindingProtocolGuid = EFI_TCP4_SERVICE_BINDING_PROTOCOL_GUID;
+EFI_GUID gEfiTcp4ProtocolGuid = EFI_TCP4_PROTOCOL_GUID;
+
+EFI_GUID gEfiTcp6ServiceBindingProtocolGuid = EFI_TCP6_SERVICE_BINDING_PROTOCOL_GUID;
+EFI_GUID gEfiTcp6ProtocolGuid = EFI_TCP6_PROTOCOL_GUID;
+
+EFI_GUID gEfiTlsServiceBindingProtocolGuid = EFI_TLS_SERVICE_BINDING_PROTOCOL_GUID;
+EFI_GUID gEfiTlsProtocolGuid = EFI_TLS_PROTOCOL_GUID;
+
+EFI_GUID gEfiTlsCaCertificateGuid = EFI_TLS_CA_CERTIFICATE_GUID;
+
+EFI_GUID gEfiTlsConfigurationProtocolGuid = EFI_TLS_CONFIGURATION_PROTOCOL_GUID;
+
+EFI_GUID gEfiDns4ServiceBindingProtocolGuid = EFI_DNS4_SERVICE_BINDING_PROTOCOL_GUID;
+EFI_GUID gEfiDns4ProtocolGuid = EFI_DNS4_PROTOCOL_GUID;
+
+EFI_GUID gEfiDns6ServiceBindingProtocolGuid = EFI_DNS6_SERVICE_BINDING_PROTOCOL_GUID;
+EFI_GUID gEfiDns6ProtocolGuid = EFI_DNS6_PROTOCOL_GUID;
+
+EFI_GUID gEfiIp6ConfigProtocolGuid = EFI_IP6_CONFIG_PROTOCOL_GUID;
+
+EFI_GUID gEfiCertX509Guid = EFI_CERT_X509_GUID;
+
+EFI_GUID gEdkiiHttpTlsCipherListGuid = EDKII_HTTP_TLS_CIPHER_LIST_GUID;
+
+EFI_GUID gEdkiiHttpCallbackProtocolGuid = EDKII_HTTP_CALLBACK_PROTOCOL_GUID;

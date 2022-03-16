@@ -18,20 +18,25 @@ fn main() {
     ];
 
     let libraries = [
-        "UefiLib",
-        "BaseMemoryLib",
-        "BasePrintLib",
-        "BaseLib",
-        "BaseDebugLibNull",
-        "UefiMemoryAllocationLib",
-        "UefiBootServicesTableLib",
-        "UefiRuntimeServicesTableLib",
-        "UefiDevicePathLib",
-        "UefiDevicePathLibDevicePathProtocol",
+        "MdePkg/Library/UefiLib",
+        "MdePkg/Library/BaseMemoryLib",
+        "MdePkg/Library/BasePrintLib",
+        "MdePkg/Library/BaseLib",
+        "MdePkg/Library/BaseDebugLibNull",
+        "MdePkg/Library/UefiMemoryAllocationLib",
+        "MdePkg/Library/UefiBootServicesTableLib",
+        "MdePkg/Library/UefiRuntimeServicesTableLib",
+        "MdePkg/Library/UefiDevicePathLib",
+        "MdePkg/Library/UefiDevicePathLibDevicePathProtocol",
+        "NetworkPkg/Library/DxeHttpIoLib",
+        "NetworkPkg/Library/DxeHttpLib",
+        "NetworkPkg/Library/DxeDpcLib",
+        "NetworkPkg/Library/DxeNetLib",
+        // "MdeModulePkg/Library/UefiBootManagerLib",
     ]
     .into_iter()
     .map(|lib| {
-        let library_path = format!("extra/edk2/MdePkg/Library/{lib}");
+        let library_path = format!("extra/edk2/{lib}");
         glob(&format!("{library_path}/*.c"))
     })
     .collect::<Result<Vec<_>, _>>()
@@ -44,6 +49,7 @@ fn main() {
         .include(Path::new(&format!("extra/edk2/MdePkg/Include/{}", arch)))
         .include(Path::new("extra/edk2/MdePkg/Include/Library/"))
         .include(Path::new("extra/edk2/ShellPkg/Include/"))
+        .include(Path::new("extra/edk2/NetworkPkg/Include/"))
         .include(Path::new("extra/edk2/MdeModulePkg/Include/"));
 
     // DEFINES
@@ -214,7 +220,10 @@ fn main() {
         .define("_PCD_GET_MODE_16_PcdHardwareErrorRecordLevel", "0")
         .define("_PCD_GET_MODE_16_PcdPlatformBootTimeOut", "0xffff")
         .define("_PCD_GET_MODE_BOOL_PcdShellLibAutoInitialize", "FALSE")
-        .define("_PCD_GET_MODE_16_PcdShellPrintBufferSize", "16000");
+        .define("_PCD_GET_MODE_16_PcdShellPrintBufferSize", "16000")
+        .define("_PCD_GET_MODE_32_PcdHttpIoTimeout", "5000")
+        .define("_PCD_GET_MODE_32_PcdMaxHttpChunkTransfer", "0x0C00000")
+        .define("_PCD_GET_MODE_BOOL_PcdAllowHttpConnections", "TRUE");
 
     // Glue
     c.file("src/glue/guid.c");
@@ -237,6 +246,7 @@ fn main() {
     c.compiler("clang-cl")
         .flag("/GS-")
         .flag("/W0")
+        .flag("/FIsrc/glue.h")
         .static_flag(true)
         .compile("uefi");
 }

@@ -1,4 +1,5 @@
 #include <Uefi.h>
+#include <Uefi/UefiBaseType.h>
 
 #include <Pi/PiMultiPhase.h>
 
@@ -291,3 +292,13 @@ DevicePathLibConstructor(IN EFI_HANDLE ImageHandle,
 #include <Library/BaseMemoryLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/PrintLib.h>
+
+#include <Library/JsonLib.h>
+
+#include <HttpDxe/HttpDriver.h>
+#include <RedfishRestExDxe/RedfishRestExDriver.h>
+
+EFI_STATUS
+EFIAPI
+HttpDxeDriverEntryPoint(IN EFI_HANDLE ImageHandle,
+                        IN EFI_SYSTEM_TABLE *SystemTable);
