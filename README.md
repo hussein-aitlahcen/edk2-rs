@@ -19,4 +19,6 @@ Credits to Alex Ionescu, glue was stolen from [VisualUefi](https://github.com/io
 
 # Example in action
 
+Execute a HTTP get to [httpbin.org/range/8192](https://httpbin.org/#/Dynamic_data/get_range__numbytes_)
+
 ![wtf](./example.png)

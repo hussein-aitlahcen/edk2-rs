@@ -5,3 +5,7 @@ edition = "2021"
 
 [dependencies]
 edk2-rs = { path = "../lib" }
+static-alloc = "0.2"
+widestring = { version = "0.5", default-features = false, features = [ "alloc" ] }
+cstr_core = { version = "0.2", default-features = false, features = [ "alloc" ] }
+itertools = { version = "0.10.3", default-features = false }
